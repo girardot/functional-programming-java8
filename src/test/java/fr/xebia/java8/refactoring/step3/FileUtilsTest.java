@@ -17,8 +17,10 @@ public class FileUtilsTest {
 
     @Test
     public void should_parse_user_csv() {
+        // Given / When
         List<User> users = FileUtils.loadUsersFromCsv(getFileFromPath("users.csv"));
 
+        // Then
         assertThat(users).hasSize(1000);
         User firstUser = users.get(0);
         assertThat(firstUser.getTitle()).isEqualTo("Mme");
@@ -31,15 +33,19 @@ public class FileUtilsTest {
 
     @Test
     public void should_find_file_path_by_filename() throws IOException {
+        // Given / When
         Path fileWithName = FileUtils.findRecursivelyFileByName(".", "FileUtils.java");
 
+        // Then
         assertThat(fileWithName).isEqualTo(Paths.get("./src/main/java/fr/xebia/java8/refactoring/step3/FileUtils.java"));
     }
 
     @Test(expected = FileNotFoundException.class)
     public void should_not_find_file_path_by_filename_when_file_not_exist() throws IOException {
+        // Given / When
         Path fileWithName = FileUtils.findRecursivelyFileByName(".", "UserParser123.java");
 
+        // Then
         assertThat(fileWithName).isNull();
     }
 
@@ -51,4 +57,5 @@ public class FileUtilsTest {
             return null;
         }
     }
+
 }

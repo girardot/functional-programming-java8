@@ -24,7 +24,6 @@ public class MerchantServiceTest {
     public void should_execute_future_for_products_and_stocks() throws Exception {
         Merchant merchant = merchantService.retrieveMerchant();
 
-
         assertThat(merchant.getProducts()).hasSize(6);
         assertThat(merchant.getProducts().get(0)).isEqualTo(new Product(1, "product 1", "Description product 1", Product.Category.BOOKS, 7));
         assertThat(merchant.getStocks().get(0)).isEqualTo(new Stock(7, 3));
@@ -44,4 +43,5 @@ public class MerchantServiceTest {
 
         await().until(() -> StockRepository.CURRENT.findById(7).getQuantity() == 2);
     }
+
 }
